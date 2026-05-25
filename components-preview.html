@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Katalog Referensi Komponen Dashboard untuk Vibe Coding">
+    <title>Komponen Preview - Vibe Dashboard</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Lucide Icons CDN untuk icon minimalis modern -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Script Tema Pencegah Kedipan (Theme Flash Prevention) -->
+    <script>
+        const theme = localStorage.getItem('vibe-theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ==========================================
+             1. SIDEBAR NAVIGASI UTAMA (SISI KIRI)
+             ========================================== -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-logo">V</div>
+                <div class="sidebar-title">VibeTemplate</div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-label">Menu Utama</li>
+                <li class="menu-item">
+                    <a href="index.html" class="menu-link">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard Overview</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="components-preview.html" class="menu-link">
+                        <i data-lucide="layers"></i>
+                        <span>Galeri Komponen</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Pengelolaan</li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="folder-git2"></i>
+                        <span>Proyek AI</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="file-text"></i>
+                        <span>Dokumentasi</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Konfigurasi</li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="settings"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <p>Vibe Engine v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             2. AREA KONTEN UTAMA (SISI KANAN)
+             ========================================== -->
+        <main class="main-content">
+            
+            <!-- HEADER ATAS (STIKY TOP) -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" aria-label="Buka Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i data-lucide="search"></i>
+                        <input type="text" placeholder="Cari sesuatu...">
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <!-- Tombol Toggle Tema -->
+                    <button class="theme-toggle" aria-label="Ganti Tema">
+                        <i data-lucide="sun"></i>
+                    </button>
+
+                    <!-- Tombol Notifikasi & Dropdown -->
+                    <div class="dropdown-container">
+                        <div class="notification-bell" aria-label="Notifikasi">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-badge"></span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">Notifikasi Terbaru</div>
+                            <ul class="notification-list">
+                                <li class="notification-item">
+                                    <span class="notification-text">Proyek baru <strong>Refaktor CSS</strong> ditambahkan.</span>
+                                    <span class="notification-time">2 menit yang lalu</span>
+                                </li>
+                                <li class="notification-item">
+                                    <span class="notification-text">Template Vibe Coding sukses disetup.</span>
+                                    <span class="notification-time">1 jam yang lalu</span>
+                                </li>
+                                <li class="notification-item">
+                                    <span class="notification-text">Developer <strong>Nosinggih</strong> login ke sistem.</span>
+                                    <span class="notification-time">3 jam yang lalu</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Profil Pengguna & Dropdown -->
+                    <div class="dropdown-container">
+                        <div class="user-profile">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="user-avatar">
+                            <div class="user-info">
+                                <span class="user-name">Nosinggih</span>
+                                <span class="user-role">Lead Vibe Coder</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu" style="width: 200px;">
+                            <div class="dropdown-header">Akun Saya</div>
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="user"></i>
+                                <span>Profil Saya</span>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i data-lucide="settings"></i>
+                                <span>Pengaturan</span>
+                            </a>
+                            <a href="login.html" class="dropdown-item text-danger">
+                                <i data-lucide="log-out"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ======================================================================
+                 ZONA EKSEKUSI AI (ZONA BEBAS MODIFIKASI)
+                 ====================================================================== -->
+            <section class="content-body">
+                
+                <!-- Section Header -->
+                <div>
+                    <h1 style="color: var(--text-heading); font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px;">Galeri Komponen</h1>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Panduan visual komponen UI siap pakai yang dioptimalkan untuk Vibe Coding.</p>
+                </div>
+
+                <!-- 1. Kumpulan Kartu Desain & Tombol Aksi -->
+                <div class="row">
+                    <div class="col-6">
+                        <!-- Kartu Komponen Tombol -->
+                        <div class="card" style="height: 100%;">
+                            <div class="card-title">
+                                <span>Katalog Tombol (Buttons)</span>
+                                <div class="card-title-icon"><i data-lucide="mouse-pointer-click"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.25rem;">
+                                Seluruh kelas tombol telah dilengkapi dengan efek hover dan transisi yang halus menggunakan variabel transisi terpusat.
+                            </p>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                                <div>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Ukuran Standar</span>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <button class="btn btn-primary">Tombol Utama</button>
+                                        <button class="btn btn-secondary">Tombol Sekunder</button>
+                                        <button class="btn btn-glow">Efek Glow</button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Variasi Warna Status</span>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <button class="btn btn-success"><i data-lucide="check"></i> Simpan</button>
+                                        <button class="btn btn-danger"><i data-lucide="trash-2"></i> Hapus</button>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Ukuran Kecil (Small)</span>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <button class="btn btn-primary btn-sm">Primary Sm</button>
+                                        <button class="btn btn-secondary btn-sm">Secondary Sm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <!-- Kartu Komponen Badges & Notifikasi Status -->
+                        <div class="card" style="height: 100%;">
+                            <div class="card-title">
+                                <span>Badge & Label Status</span>
+                                <div class="card-title-icon"><i data-lucide="tag"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.25rem;">
+                                Badge status memadukan warna aksen dengan transparansi halus untuk menjaga visual gelap sinematik tetap elegan.
+                            </p>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                                <div>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Badges Status</span>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                                        <span class="badge badge-success">Selesai (Success)</span>
+                                        <span class="badge badge-warning">Tunda (Warning)</span>
+                                        <span class="badge badge-danger">Gagal (Danger)</span>
+                                        <span class="badge badge-info">Info</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Aksen Gradasi Hover Kartu</span>
+                                    <div class="row">
+                                        <div class="col-6" style="padding: 0 0.5rem;">
+                                            <div class="card card-accent" style="padding: 1rem; font-size: 0.8rem; text-align: center; background: rgba(255,255,255,0.01);">
+                                                Garis Aksen Atas (Cyan)
+                                            </div>
+                                        </div>
+                                        <div class="col-6" style="padding: 0 0.5rem;">
+                                            <div class="card" style="padding: 1rem; font-size: 0.8rem; text-align: center; border-color: var(--accent); box-shadow: var(--shadow-glow);">
+                                                Glow Border Aktif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Formulir Interaktif & Alerts -->
+                <div class="row">
+                    <div class="col-6">
+                        <!-- Formulir Input -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span>Form Input & Validasi</span>
+                                <div class="card-title-icon"><i data-lucide="edit-3"></i></div>
+                            </div>
+                            
+                            <!-- Demo alert sukses saat form valid -->
+                            <div class="alert alert-success alert-success-demo" style="display: none; margin-bottom: 1rem;">
+                                <div class="alert-icon"><i data-lucide="check-circle-2"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Berhasil Disubmit!</div>
+                                    Form telah divalidasi dan data simulasi dikirim dengan sukses.
+                                </div>
+                            </div>
+
+                            <form class="demo-validate-form">
+                                <div class="form-group">
+                                    <label class="form-label">Nama Lengkap <span style="color: var(--danger);">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Masukkan nama..." required>
+                                    <span class="error-message">Wajib memasukkan nama lengkap Anda</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Alamat Email <span style="color: var(--danger);">*</span></label>
+                                    <input type="email" class="form-control" placeholder="nama@email.com" required>
+                                    <span class="error-message">Alamat email wajib diisi dengan format benar</span>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Peran Pengguna</label>
+                                        <select class="form-control form-select">
+                                            <option value="developer">Developer Utama</option>
+                                            <option value="ai">AI Agent</option>
+                                            <option value="junior">Junior Programmer</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Akses Level</label>
+                                        <select class="form-control form-select">
+                                            <option value="full">Akses Penuh</option>
+                                            <option value="read">Hanya Baca</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+                                    <button type="submit" class="btn btn-primary">Kirim Form</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <!-- Alert Showcase -->
+                        <div class="card" style="height: 100%; display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="card-title" style="margin-bottom: 0.25rem;">
+                                <span>Sistem Notifikasi (Alerts)</span>
+                                <div class="card-title-icon"><i data-lucide="bell-ring"></i></div>
+                            </div>
+                            
+                            <div class="alert alert-success">
+                                <div class="alert-icon"><i data-lucide="check-circle-2"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Operasi Sukses</div>
+                                    File konfigurasi berhasil disimpan ke sistem utama.
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <div class="alert-icon"><i data-lucide="info"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Informasi Sistem</div>
+                                    Server cadangan sedang melakukan sinkronisasi otomatis.
+                                </div>
+                            </div>
+
+                            <div class="alert alert-warning">
+                                <div class="alert-icon"><i data-lucide="alert-triangle"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Peringatan Kritis</div>
+                                    Token API akan kedaluwarsa dalam 3 hari ke depan.
+                                </div>
+                            </div>
+
+                            <div class="alert alert-danger">
+                                <div class="alert-icon"><i data-lucide="x-circle"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Kegagalan Autentikasi</div>
+                                    Kata sandi atau token yang dimasukkan tidak valid.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.5. Galeri Elemen Formulir Lengkap (Beragam State & Jenis) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-accent">
+                            <div class="card-title">
+                                <span>Galeri Elemen Formulir Lengkap</span>
+                                <div class="card-title-icon" style="background-color: var(--accent-glow); color: var(--accent);"><i data-lucide="check-square"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.5rem;">
+                                Menampilkan berbagai jenis tipe input data lengkap dengan contoh visual perbandingan antara status Normal, Warning (Peringatan), dan Error (Kesalahan Validasi).
+                            </p>
+
+                            <!-- Baris 1: Text Input & Password Input -->
+                            <div class="row" style="margin-bottom: 1.5rem;">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Normal Text Input</label>
+                                        <input type="text" class="form-control" placeholder="Nama Lengkap..." value="Andi Wijaya">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-warning">
+                                        <label class="form-label">Warning Input (Lemah)</label>
+                                        <input type="password" class="form-control" value="12345">
+                                        <span class="warning-message"><i data-lucide="alert-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Kata sandi Anda terlalu lemah.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-error">
+                                        <label class="form-label">Error Input (Validasi)</label>
+                                        <input type="email" class="form-control" value="andi.wijayagmail.com">
+                                        <span class="error-message"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Format email tidak valid, gunakan @.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Baris 2: Dropdown Select & Date Input -->
+                            <div class="row" style="margin-bottom: 1.5rem;">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Select Option (Normal)</label>
+                                        <select class="form-control form-select">
+                                            <option value="ID">Indonesia</option>
+                                            <option value="US">Amerika Serikat</option>
+                                            <option value="JP">Jepang</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-warning">
+                                        <label class="form-label">Select Option (Warning)</label>
+                                        <select class="form-control form-select">
+                                            <option value="">Pilih Akses...</option>
+                                            <option value="guest" selected>Guest Access (Terbatas)</option>
+                                        </select>
+                                        <span class="warning-message"><i data-lucide="alert-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Akses Guest memiliki limitasi penggunaan fitur.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-error">
+                                        <label class="form-label">Select Option (Error)</label>
+                                        <select class="form-control form-select">
+                                            <option value="" selected>Pilih Kategori...</option>
+                                        </select>
+                                        <span class="error-message"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Silakan pilih kategori modul di atas.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Baris 3: Date Input & Textarea -->
+                            <div class="row" style="margin-bottom: 1.5rem;">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Date Input (Normal)</label>
+                                        <input type="date" class="form-control" value="2026-05-25">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-warning">
+                                        <label class="form-label">Date Input (Warning)</label>
+                                        <input type="date" class="form-control" value="2026-05-30">
+                                        <span class="warning-message"><i data-lucide="alert-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Tanggal yang dipilih mendekati batas akhir tempo.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group has-error">
+                                        <label class="form-label">Date Input (Error)</label>
+                                        <input type="date" class="form-control" value="1900-01-01">
+                                        <span class="error-message"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Tanggal lahir tidak boleh melebihi tahun berjalan.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Baris 4: Checkbox & Radio Buttons -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Group Checkbox Modern</label>
+                                        <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="checkbox" checked style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>HTML5 Struktur</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="checkbox" checked style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>Vanilla CSS</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="checkbox" style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>React JS Framer</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Group Radio Button Modern</label>
+                                        <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="radio" name="role-group" checked style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>Administrator</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="radio" name="role-group" style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>Moderator</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.875rem;">
+                                                <input type="radio" name="role-group" style="accent-color: var(--accent); width:18px; height:18px;">
+                                                <span>User Biasa</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Tabel Responsif di Dalam Kartu -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>Tabel Data Responsif (Table inside Card)</span>
+                                <div class="card-title-icon"><i data-lucide="table"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.25rem;">
+                                Tabel secara otomatis memiliki scroll horizontal ketika ukuran layar menyusut di bawah batas wajar perangkat mobile, menjaga integritas tata letak di sekitarnya.
+                            </p>
+                            
+                            <div class="table-responsive">
+                                <table class="table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Proyek</th>
+                                            <th>Judul Proyek</th>
+                                            <th>Kategori Fitur</th>
+                                            <th>Persentase</th>
+                                            <th>Kesehatan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#VIB-01</td>
+                                            <td style="font-weight: 600; color: var(--text-heading);">Refaktor CSS Sidebar</td>
+                                            <td>Tata Letak Global</td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600;">
+                                                    <div style="flex: 1; height: 6px; width: 60px; background: var(--border-color); border-radius: 3px; overflow: hidden;">
+                                                        <div style="height: 100%; width: 100%; background: var(--success);"></div>
+                                                    </div>
+                                                    <span>100%</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge badge-success">Optimal</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem;"><i data-lucide="pencil" style="width: 14px; height: 14px;"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#VIB-02</td>
+                                            <td style="font-weight: 600; color: var(--text-heading);">Uji Kelayakan Browser HP</td>
+                                            <td>Responsivitas</td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600;">
+                                                    <div style="flex: 1; height: 6px; width: 60px; background: var(--border-color); border-radius: 3px; overflow: hidden;">
+                                                        <div style="height: 100%; width: 80%; background: var(--accent);"></div>
+                                                    </div>
+                                                    <span>80%</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge badge-success">Optimal</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem;"><i data-lucide="pencil" style="width: 14px; height: 14px;"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#VIB-03</td>
+                                            <td style="font-weight: 600; color: var(--text-heading);">Penambahan Visual Chart</td>
+                                            <td>Grafik Analitis</td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600;">
+                                                    <div style="flex: 1; height: 6px; width: 60px; background: var(--border-color); border-radius: 3px; overflow: hidden;">
+                                                        <div style="height: 100%; width: 35%; background: var(--warning);"></div>
+                                                    </div>
+                                                    <span>35%</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge badge-warning">Perhatian</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem;"><i data-lucide="pencil" style="width: 14px; height: 14px;"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#VIB-04</td>
+                                            <td style="font-weight: 600; color: var(--text-heading);">Perbaikan Overflow Footer</td>
+                                            <td>Isu Visual Bug</td>
+                                            <td>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600;">
+                                                    <div style="flex: 1; height: 6px; width: 60px; background: var(--border-color); border-radius: 3px; overflow: hidden;">
+                                                        <div style="height: 100%; width: 5%; background: var(--danger);"></div>
+                                                    </div>
+                                                    <span>5%</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge badge-danger">Kritis</span></td>
+                                            <td>
+                                                <button class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem;"><i data-lucide="pencil" style="width: 14px; height: 14px;"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.5. Galeri Desain Kartu (Masonry, Action, & Sizes Showcase) -->
+                <div style="margin-top: 1rem; margin-bottom: 0.5rem;">
+                    <h2 style="color: var(--text-heading); font-size: 1.40rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.35rem;">Katalog & Galeri Kartu (Cards Showcase)</h2>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;">Visualisasi perbandingan kartu dalam berbagai ukuran, layout Masonry, serta kartu beraksi (Action Card).</p>
+                </div>
+
+                <!-- A. Perbandingan Ukuran Kartu (Card Sizes) -->
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card card-sm" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div>
+                                <div class="badge badge-info" style="margin-bottom: 0.5rem;">Small Size</div>
+                                <h3 style="font-size: 0.95rem; color: var(--text-heading); margin-bottom: 0.5rem;">Kartu Ukuran Kecil (Card-Sm)</h3>
+                                <p style="font-size: 0.775rem; color: var(--text-muted);">padding: 1rem; Cocok untuk statistik mini, widget singkat, atau item grid padat.</p>
+                            </div>
+                            <div class="card-action-footer" style="margin-top: 0.75rem; padding-top: 0.5rem;">
+                                <a href="#" class="btn btn-primary btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.7rem;">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card card-md" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div>
+                                <div class="badge badge-success" style="margin-bottom: 0.5rem;">Medium Size</div>
+                                <h3 style="font-size: 1.1rem; color: var(--text-heading); margin-bottom: 0.5rem;">Kartu Ukuran Sedang (Card-Md)</h3>
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">padding: 1.5rem; Standard ukuran kartu bawaan sistem dashboard. Sangat ideal untuk grafik dan form.</p>
+                            </div>
+                            <div class="card-action-footer">
+                                <button class="btn btn-secondary btn-sm">Batal</button>
+                                <button class="btn btn-primary btn-sm">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card card-lg" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div>
+                                <div class="badge badge-warning" style="margin-bottom: 0.5rem;">Large Size</div>
+                                <h3 style="font-size: 1.25rem; color: var(--text-heading); margin-bottom: 0.75rem;">Kartu Ukuran Besar (Card-Lg)</h3>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">padding: 2.25rem; Menawarkan area fokus visual yang luas dan jarak pandang premium untuk hero header.</p>
+                            </div>
+                            <div class="card-action-footer">
+                                <a href="#" class="btn btn-glow btn-sm">Jelajahi Lebih Lanjut <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B. Galeri Grid Masonry & Kartu Aksi (Masonry & Action Cards Showcase) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>Tampilan Grid Masonry & Kartu Aksi Bergradasi</span>
+                                <div class="card-title-icon"><i data-lucide="grid"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.5rem;">
+                                Menunjukkan struktur tumpukan kartu multi-kolom Masonry di mana setiap kartu dapat memiliki tinggi konten yang dinamis tanpa mengganggu keseimbangan baris.
+                            </p>
+
+                            <div class="masonry-grid">
+                                <!-- Masonry Item 1: Action Card Glow -->
+                                <div class="masonry-item">
+                                    <div class="card card-accent" style="padding: 1.25rem;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                            <span style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">Glow Action</span>
+                                            <i data-lucide="sparkles" style="width:16px; height:16px; color: var(--accent);"></i>
+                                        </div>
+                                        <h4 style="color: var(--text-heading); font-size: 1rem; margin-bottom: 0.5rem;">Glow Accent Action</h4>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
+                                            Kartu aksi beraksen garis gradasi atas yang memancarkan pendaran warna cyan neon sinematik pada sisi bingkai saat kursor diarahkan ke atasnya.
+                                        </p>
+                                        <div class="card-action-footer" style="margin-top: 0; padding-top: 0.75rem;">
+                                            <button class="btn btn-glow btn-sm" style="width: 100%;">Aktifkan Fitur</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Masonry Item 2: Informasi Tinggi -->
+                                <div class="masonry-item">
+                                    <div class="card" style="padding: 1.25rem;">
+                                        <h4 style="color: var(--text-heading); font-size: 1rem; margin-bottom: 0.5rem;">Konten Dinamis Panjang</h4>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.5;">
+                                            Kartu ini menampung konten tulisan deskripsi yang lebih panjang. Di dalam struktur layout masonry, kartu ini secara otomatis memanjang ke bawah dan mendorong kartu di bawahnya tanpa memecah kolom kiri/kanan.
+                                        </p>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                                            Desain responsive grid masonry ini sangat cocok untuk menyajikan data analitis teks, kumpulan feedback, review log AI, atau daftar tugas terinci.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Masonry Item 3: Alert Card -->
+                                <div class="masonry-item">
+                                    <div class="card" style="padding: 1.25rem; border-color: rgba(239, 68, 68, 0.25);">
+                                        <div style="display: flex; gap: 0.5rem; align-items: center; color: var(--danger); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.75rem;">
+                                            <i data-lucide="shield-alert" style="width: 16px; height: 16px;"></i>
+                                            <span>Peringatan Keamanan</span>
+                                        </div>
+                                        <h4 style="color: var(--text-heading); font-size: 1rem; margin-bottom: 0.5rem;">Tindakan Diperlukan!</h4>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
+                                            Deteksi ancaman masuk pada port jaringan cadangan. Harap periksa konfigurasi firewall secepatnya.
+                                        </p>
+                                        <div class="card-action-footer" style="margin-top: 0; padding-top: 0.75rem;">
+                                            <button class="btn btn-danger btn-sm" style="width: 100%;">Tinjau Isu</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Masonry Item 4: Simple Card -->
+                                <div class="masonry-item">
+                                    <div class="card" style="padding: 1.25rem;">
+                                        <h4 style="color: var(--text-heading); font-size: 1rem; margin-bottom: 0.5rem;">Widget Ringkas</h4>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                                            Kartu minimalis tanpa footer aksi. Berfungsi murni sebagai wadah informasi padat cepat.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Komponen Datatable Interaktif -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-accent">
+                            <div class="card-title">
+                                <span>Visual Datatable Interaktif (High-Fidelity Mock)</span>
+                                <div class="card-title-icon" style="background-color: var(--info-glow); color: var(--info);"><i data-lucide="database"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.825rem; margin-bottom: 1.5rem;">
+                                Datatable dilengkapi dengan filter baris aktif, pembatas entri data, filter pencarian teks dinamis (semua kolom) yang berfungsi penuh secara instan, serta navigasi halaman tersemat.
+                            </p>
+                            
+                            <div class="datatable-wrapper">
+                                <!-- Header Datatable (Pencarian & Entri) -->
+                                <div class="datatable-header">
+                                    <div class="datatable-length">
+                                        <span>Tampilkan</span>
+                                        <select id="dt-length-select">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                        </select>
+                                        <span>entri</span>
+                                    </div>
+                                    
+                                    <div class="search-bar datatable-search" style="display: flex;">
+                                        <i data-lucide="search"></i>
+                                        <input type="text" id="dt-search" placeholder="Cari data...">
+                                    </div>
+                                </div>
+                                
+                                <!-- Tabel Datatable -->
+                                <div class="table-responsive">
+                                    <table class="table-custom" id="dt-preview-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID <i data-lucide="chevrons-up-down" style="width: 14px; height: 14px; margin-left: 4px; vertical-align: middle; color: var(--text-muted);"></i></th>
+                                                <th>Nama Modul <i data-lucide="chevrons-up-down" style="width: 14px; height: 14px; margin-left: 4px; vertical-align: middle; color: var(--text-muted);"></i></th>
+                                                <th>Kategori <i data-lucide="chevrons-up-down" style="width: 14px; height: 14px; margin-left: 4px; vertical-align: middle; color: var(--text-muted);"></i></th>
+                                                <th>Versi <i data-lucide="chevrons-up-down" style="width: 14px; height: 14px; margin-left: 4px; vertical-align: middle; color: var(--text-muted);"></i></th>
+                                                <th>Tanggal Rilis <i data-lucide="chevrons-up-down" style="width: 14px; height: 14px; margin-left: 4px; vertical-align: middle; color: var(--text-muted);"></i></th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#MD-801</td>
+                                                <td style="font-weight: 600; color: var(--text-heading);">Autentikasi OAuth2</td>
+                                                <td>Keamanan</td>
+                                                <td>v2.1.0</td>
+                                                <td>12 Mei 2026</td>
+                                                <td><span class="badge badge-success">Aktif</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#MD-802</td>
+                                                <td style="font-weight: 600; color: var(--text-heading);">Visualisasi Chart JS</td>
+                                                <td>Grafik Visual</td>
+                                                <td>v1.4.5</td>
+                                                <td>18 Mei 2026</td>
+                                                <td><span class="badge badge-success">Aktif</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#MD-803</td>
+                                                <td style="font-weight: 600; color: var(--text-heading);">Ekspor PDF Dompdf</td>
+                                                <td>Pelaporan</td>
+                                                <td>v0.9.2</td>
+                                                <td>20 Mei 2026</td>
+                                                <td><span class="badge badge-warning">Uji Coba</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#MD-804</td>
+                                                <td style="font-weight: 600; color: var(--text-heading);">Sinkronisasi API Slack</td>
+                                                <td>Integrasi</td>
+                                                <td>v1.0.0</td>
+                                                <td>22 Mei 2026</td>
+                                                <td><span class="badge badge-danger">Nonaktif</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-family: monospace; font-weight: 600; color: var(--text-muted);">#MD-805</td>
+                                                <td style="font-weight: 600; color: var(--text-heading);">Generator Markdown AI</td>
+                                                <td>Fitur Utama</td>
+                                                <td>v3.0.1</td>
+                                                <td>25 Mei 2026</td>
+                                                <td><span class="badge badge-success">Aktif</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Footer Datatable (Info & Pagination) -->
+                                <div class="datatable-footer">
+                                    <div id="dt-info-text" class="datatable-info">
+                                        Menampilkan 1 sampai 5 dari 5 entri
+                                    </div>
+                                    
+                                    <ul class="datatable-pagination">
+                                        <li class="page-item disabled"><span class="page-link">Sebelumnya</span></li>
+                                        <li class="page-item active"><span class="page-link">1</span></li>
+                                        <li class="page-item disabled"><span class="page-link">Selanjutnya</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- ======================================================================
+                 AKHIR ZONA EKSEKUSI AI
+                 ====================================================================== -->
+
+        </main>
+    </div>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>
