@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Halaman Masuk Template Dashboard Premium">
+    <title>Masuk - Vibe Dashboard</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Script Tema Pencegah Kedipan (Theme Flash Prevention) -->
+    <script>
+        const theme = localStorage.getItem('vibe-theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Elemen Latar Belakang Glowing Bias Cahaya Sinematik -->
+        <div class="login-bg-glow"></div>
+        <div class="login-bg-glow-2"></div>
+        
+        <!-- Tombol Toggler Tema Melayang di Pojok Atas -->
+        <div style="position: absolute; top: 1.5rem; right: 1.5rem; z-index: 100;">
+            <button class="theme-toggle" aria-label="Ganti Tema">
+                <i data-lucide="sun"></i>
+            </button>
+        </div>
+
+        <!-- Kartu Utama Login Box -->
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">V</div>
+                <h1 class="login-title">Selamat Datang</h1>
+                <p class="login-subtitle">Silakan masuk ke akun VibeTemplate Anda</p>
+            </div>
+
+            <!-- Demo Form Validasi Login -->
+            <form class="demo-validate-form" id="login-form">
+                <!-- Simulasi alert sukses login -->
+                <div class="alert alert-success alert-success-demo" style="display: none; margin-bottom: 1.25rem;">
+                    <div class="alert-icon"><i data-lucide="check-circle-2"></i></div>
+                    <div class="alert-content">
+                        <div class="alert-title">Masuk Sukses!</div>
+                        Mengarahkan Anda ke halaman dashboard...
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Alamat Email <span style="color: var(--danger);">*</span></label>
+                    <input type="email" class="form-control" id="login-email" placeholder="nama@email.com" required value="nosinggih@email.com">
+                    <span class="error-message"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Alamat email tidak boleh kosong dan harus berformat benar</span>
+                </div>
+
+                <div class="form-group" style="position: relative;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.15rem;">
+                        <label class="form-label" style="margin-bottom: 0;">Kata Sandi <span style="color: var(--danger);">*</span></label>
+                    </div>
+                    <div style="position: relative; width: 100%;">
+                        <input type="password" class="form-control" id="login-password" placeholder="••••••••" required value="vibe1234">
+                        <button type="button" id="password-toggle-btn" style="position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); background: none; border: none;" aria-label="Tampilkan Kata Sandi">
+                            <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
+                        </button>
+                    </div>
+                    <span class="error-message"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Kata sandi wajib diisi dengan benar</span>
+                </div>
+
+                <!-- Opsi Checklist & Lupa Password -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.825rem;">
+                    <label style="display: flex; align-items: center; gap: 0.45rem; cursor: pointer;">
+                        <input type="checkbox" checked style="accent-color: var(--accent); width:16px; height:16px;">
+                        <span style="color: var(--text-muted);">Ingat Saya</span>
+                    </label>
+                    <a href="#" style="color: var(--accent); font-weight: 600;">Lupa Sandi?</a>
+                </div>
+
+                <!-- Tombol Submit Utama (White Text!) -->
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem 1.25rem;">
+                    <span>Masuk ke Dashboard</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <span>Belum memiliki akun? <a href="#">Daftar Baru</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+    
+    <!-- Script Kustom khusus Login Page (Password toggle & redirect) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('login-password');
+            const toggleBtn = document.getElementById('password-toggle-btn');
+            const loginForm = document.getElementById('login-form');
+
+            // 1. Logika Tampilkan / Sembunyikan Kata Sandi
+            if (toggleBtn && passwordInput) {
+                toggleBtn.addEventListener('click', () => {
+                    const isPassword = passwordInput.getAttribute('type') === 'password';
+                    passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+                    
+                    toggleBtn.innerHTML = isPassword 
+                        ? '<i data-lucide="eye-off" style="width: 18px; height: 18px;"></i>' 
+                        : '<i data-lucide="eye" style="width: 18px; height: 18px;"></i>';
+                    
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                });
+            }
+
+            // 2. Simulasi Pengalihan Halaman (Redirect) setelah login sukses
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    // Jika lolos validasi bawaan di app.js, jalankan simulasi redirect
+                    setTimeout(() => {
+                        const hasErrors = loginForm.querySelectorAll('.has-error').length > 0;
+                        if (!hasErrors) {
+                            const alertSuccess = loginForm.querySelector('.alert-success-demo');
+                            if (alertSuccess) {
+                                alertSuccess.style.display = 'flex';
+                                setTimeout(() => {
+                                    window.location.href = 'index.html';
+                                }, 1500);
+                            }
+                        }
+                    }, 50);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
