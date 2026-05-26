@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistem VibeTemplate Sedang Mengudara - Coming Soon">
+    <title>Segera Hadir - VibeTemplate</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-panel: #111827;
+            --bg-input: #0f172a;
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-main: #cbd5e1;
+            --text-muted: #64748b;
+            --text-heading: #f8fafc;
+            --accent: #1FABE1;
+            --accent-hover: #0E7DA7;
+            --accent-glow: rgba(31, 171, 225, 0.15);
+            --tertiary: #FFDB07;
+            --tertiary-glow: rgba(255, 219, 7, 0.2);
+            --danger: #ef4444;
+            --success: #10b981;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 219, 7, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .container:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(31, 171, 225, 0.05);
+        }
+
+        .content {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Countdown Elements */
+        .countdown-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+
+        .countdown-box {
+            flex: 1;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 0.85rem 0.5rem;
+            text-align: center;
+            min-width: 75px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .countdown-box:hover {
+            border-color: var(--accent);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 10px var(--accent-glow);
+        }
+
+        .countdown-num {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.1;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* Form Langganan */
+        .subscription-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 0.25rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .form-row:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .form-row.has-error {
+            border-color: var(--danger);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.15);
+        }
+
+        .form-row.has-success {
+            border-color: var(--success);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+
+        .input-control {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0.65rem 1rem;
+            color: var(--text-heading);
+            font-size: 0.875rem;
+            font-family: inherit;
+        }
+
+        .input-control::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-submit {
+            background-color: var(--accent);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 0 16px rgba(31, 171, 225, 0.4);
+        }
+
+        .alert-message {
+            font-size: 0.775rem;
+            font-weight: 600;
+            display: none;
+            margin-top: 0.1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .alert-message.error {
+            color: var(--danger);
+            display: block;
+        }
+
+        .alert-message.success {
+            color: var(--success);
+            display: block;
+        }
+
+        /* SVG Space Illustration */
+        .visual {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        /* Keyframes Animations */
+        @keyframes float-rocket {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes flame-pulse {
+            0%, 100% { transform: scaleY(1); opacity: 0.9; }
+            50% { transform: scaleY(1.2); opacity: 1; }
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes cloud-move {
+            0% { transform: translateX(-5px); }
+            100% { transform: translateX(5px); }
+        }
+
+        /* SVG Classes */
+        .anim-rocket {
+            animation: float-rocket 5s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        .anim-flame {
+            animation: flame-pulse 0.3s ease-in-out infinite alternate;
+            transform-origin: center top;
+        }
+
+        .anim-star {
+            animation: star-twinkle 2s ease-in-out infinite;
+        }
+        .star-2 { animation-delay: 0.5s; }
+        .star-3 { animation-delay: 1s; }
+        .star-4 { animation-delay: 1.5s; }
+
+        .anim-cloud {
+            animation: cloud-move 3s ease-in-out infinite alternate;
+        }
+
+        /* Responsive Layouts (Tablet & Mobile) */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .badge {
+                align-self: center;
+            }
+            .countdown-wrapper {
+                justify-content: center;
+            }
+            .visual {
+                order: -1; /* Tampilkan ilustrasi di atas pada mobile */
+                width: 100%;
+            }
+            .svg-container {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            .countdown-wrapper {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .countdown-box {
+                min-width: 65px;
+                padding: 0.65rem 0.35rem;
+            }
+            .countdown-num {
+                font-size: 1.4rem;
+            }
+            .form-row {
+                flex-direction: column;
+                background: transparent;
+                border: none;
+                gap: 0.5rem;
+            }
+            .input-control {
+                background: var(--bg-input);
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius-md);
+                padding: 0.8rem 1rem;
+            }
+            .btn-submit {
+                width: 100%;
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="container animate-fade-in-up">
+        
+        <!-- LEFT SIDE: TITLE, TIMER, FORM -->
+        <div class="content">
+            <div class="badge">
+                <i data-lucide="rocket" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                <span>Tahap Pengerjaan</span>
+            </div>
+            
+            <h1 class="title">Segera Hadir <span>Sistem Baru</span></h1>
+            <p class="description">Kami sedang meracik platform antarmuka VibeTemplate versi termutakhir untuk memberikan pengalaman performa terbaik dan visual premium. Berikan email Anda untuk mendapatkan pemberitahuan peluncuran pertama.</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-wrapper" id="countdown-timer">
+                <div class="countdown-box">
+                    <div class="countdown-num" id="days">00</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="hours">00</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="minutes">00</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-num" id="seconds">00</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
+            </div>
+
+            <!-- Subscription Form -->
+            <form class="subscription-form" id="newsletter-form" novalidate>
+                <div class="form-row" id="form-row-container">
+                    <input type="email" class="input-control" placeholder="Masukkan alamat email Anda..." id="subscriber-email" required autocomplete="off">
+                    <button type="submit" class="btn-submit" id="btn-submit-text">
+                        <span>Ingatkan Saya</span>
+                        <i data-lucide="bell-ring" style="width:14px; height:14px;"></i>
+                    </button>
+                </div>
+                <div class="alert-message" id="alert-msg-container"></div>
+            </form>
+        </div>
+
+        <!-- RIGHT SIDE: PREMIUM ANIMATED SVG ILLUSTRATION -->
+        <div class="visual">
+            <div class="svg-container">
+                <!-- Inline Rocket SVG Launch Illustration -->
+                <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Circular Deep Space Background -->
+                    <circle cx="200" cy="200" r="180" fill="url(#space-gradient)" stroke="#1e293b" stroke-width="2"/>
+                    
+                    <!-- Starry Twinkle Overlay -->
+                    <g class="anim-star">
+                        <circle cx="100" cy="120" r="2.5" fill="#fff" opacity="0.9"/>
+                        <polygon points="100,114 102,119 107,120 102,121 100,126 98,121 93,120 98,119" fill="#FFDB07"/>
+                    </g>
+                    <g class="anim-star star-2">
+                        <circle cx="290" cy="90" r="2" fill="#fff" opacity="0.8"/>
+                        <polygon points="290,85 291.5,89 295,90 291.5,91 290,95 288.5,91 285,90 288.5,89" fill="#1FABE1"/>
+                    </g>
+                    <g class="anim-star star-3">
+                        <circle cx="80" cy="250" r="2" fill="#fff" opacity="0.7"/>
+                    </g>
+                    <g class="anim-star star-4">
+                        <circle cx="320" cy="230" r="3" fill="#fff" opacity="0.9"/>
+                        <polygon points="320,223 322,228 327,229 322,230 320,235 318,230 313,229 318,228" fill="#FFDB07"/>
+                    </g>
+
+                    <!-- Planets -->
+                    <circle cx="300" cy="160" r="12" fill="url(#planet-gradient)"/>
+                    <path d="M 280,165 Q 300,175 320,165" stroke="rgba(31, 171, 225, 0.4)" stroke-width="2" fill="none"/>
+                    
+                    <!-- Clouds Floating -->
+                    <g class="anim-cloud" fill="rgba(30, 41, 59, 0.45)">
+                        <path d="M 60,320 Q 80,300 100,320 Q 120,310 130,320 T 150,320 Q 160,335 140,340 H 60 Z"/>
+                    </g>
+                    <g class="anim-cloud" style="animation-delay: -1.5s;" fill="rgba(14, 125, 167, 0.15)">
+                        <path d="M 260,300 Q 280,285 300,300 Q 315,295 325,300 T 340,300 Q 350,315 330,320 H 260 Z"/>
+                    </g>
+
+                    <!-- Rocket Group -->
+                    <g class="anim-rocket">
+                        <!-- Flame / Jet Stream -->
+                        <g class="anim-flame">
+                            <!-- Inner Flame -->
+                            <path d="M 185,275 Q 200,330 215,275 Z" fill="url(#flame-inner)"/>
+                            <!-- Outer Flame -->
+                            <path d="M 175,275 Q 200,360 225,275 Z" fill="url(#flame-outer)" opacity="0.8"/>
+                        </g>
+
+                        <!-- Fins / Booster wings -->
+                        <path d="M 155,250 Q 140,270 160,280 Q 175,280 175,260 Z" fill="#0E7DA7"/>
+                        <path d="M 245,250 Q 260,270 240,280 Q 225,280 225,260 Z" fill="#0E7DA7"/>
+                        <path d="M 200,250 Q 200,290 200,290 Z" stroke="#FFDB07" stroke-width="4"/>
+
+                        <!-- Rocket Main Body -->
+                        <path d="M 170,160 Q 200,80 230,160 L 225,260 L 175,260 Z" fill="url(#rocket-body-grad)" stroke="#1e293b" stroke-width="2"/>
+                        
+                        <!-- Nose cone -->
+                        <path d="M 170,160 Q 200,80 230,160 Z" fill="#0E7DA7" opacity="0.9"/>
+                        
+                        <!-- Porthole Window -->
+                        <circle cx="200" cy="165" r="18" fill="#1e293b" stroke="#0E7DA7" stroke-width="3"/>
+                        <circle cx="200" cy="165" r="12" fill="#e2e8f0"/>
+                        <path d="M 192,158 Q 205,152 210,162" stroke="#fff" stroke-width="2" fill="none" opacity="0.8"/>
+                        
+                        <!-- Decorative Stripes -->
+                        <rect x="180" y="210" width="40" height="6" fill="#FFDB07" rx="3"/>
+                        <rect x="185" y="224" width="30" height="4" fill="#1FABE1" rx="2"/>
+                    </g>
+
+                    <!-- Launch Dust/Smoke at base -->
+                    <g fill="url(#dust-gradient)">
+                        <circle cx="150" cy="340" r="25" opacity="0.85"/>
+                        <circle cx="200" cy="350" r="30" opacity="0.95"/>
+                        <circle cx="250" cy="340" r="25" opacity="0.85"/>
+                        <circle cx="120" cy="355" r="18" opacity="0.6"/>
+                        <circle cx="280" cy="355" r="18" opacity="0.6"/>
+                    </g>
+
+                    <!-- DEFINITIONS / GRADIENTS -->
+                    <defs>
+                        <linearGradient id="space-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0f172a"/>
+                            <stop offset="100%" stop-color="#020617"/>
+                        </linearGradient>
+                        <linearGradient id="rocket-body-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="50%" stop-color="#f8fafc"/>
+                            <stop offset="100%" stop-color="#cbd5e1"/>
+                        </linearGradient>
+                        <linearGradient id="flame-outer" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FFDB07"/>
+                            <stop offset="50%" stop-color="#ff9900"/>
+                            <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="flame-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="50%" stop-color="#FFDB07"/>
+                            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="planet-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0E7DA7"/>
+                            <stop offset="100%" stop-color="#1FABE1"/>
+                        </linearGradient>
+                        <radialGradient id="dust-gradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#1e293b"/>
+                            <stop offset="100%" stop-color="#0b0f19" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Logic: Countdown Timer & Email Subscriptions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Re-render Lucide Icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // 1. COUNTDOWN TIMER LOGIC (Set Target 30 Hari dari Sekarang)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 30); // 30 hari ke depan
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference <= 0) {
+                    document.getElementById('countdown-timer').innerHTML = `
+                        <div style="font-size:1.1rem; color:var(--success); font-weight:700;">Platform Telah Siap Diluncurkan!</div>
+                    `;
+                    clearInterval(timerInterval);
+                    return;
+                }
+
+                // Kalkulasi matematika
+                const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+                // Update DOM dengan padding string
+                document.getElementById('days').textContent = d.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = h.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = s.toString().padStart(2, '0');
+            };
+
+            const timerInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Run once instantly
+
+            // 2. NEWSLETTER FORM MICRO-INTERACTIONS
+            const form = document.getElementById('newsletter-form');
+            const formRow = document.getElementById('form-row-container');
+            const emailInput = document.getElementById('subscriber-email');
+            const alertMsg = document.getElementById('alert-msg-container');
+            const btnSubmit = document.getElementById('btn-submit-text');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailVal = emailInput.value.trim();
+
+                // Regex Validasi Email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailVal) {
+                    showStatus('error', 'Alamat email wajib diisi!');
+                } else if (!emailRegex.test(emailVal)) {
+                    showStatus('error', 'Format email tidak valid!');
+                } else {
+                    // Animasi Loading Sementara
+                    btnSubmit.innerHTML = `<span>Menyimpan...</span><i class="lucide-spinner" style="animation: spin 1s linear infinite; width:14px; height:14px;"></i>`;
+                    
+                    // Simulasikan Simpan API
+                    setTimeout(() => {
+                        showStatus('success', 'Terima kasih! Email Anda telah terdaftar.');
+                        form.reset();
+                        btnSubmit.innerHTML = `<span>Ingatkan Saya</span><i data-lucide="bell-ring" style="width:14px; height:14px;"></i>`;
+                        lucide.createIcons();
+                    }, 1200);
+                }
+            });
+
+            // Hapus Error saat Input berubah
+            emailInput.addEventListener('input', () => {
+                formRow.classList.remove('has-error');
+                alertMsg.className = 'alert-message';
+                alertMsg.style.display = 'none';
+            });
+
+            function showStatus(type, message) {
+                alertMsg.textContent = message;
+                alertMsg.className = `alert-message ${type}`;
+                
+                if (type === 'error') {
+                    formRow.classList.add('has-error');
+                    formRow.classList.remove('has-success');
+                    // Efek Getar input (haptic shake effect)
+                    formRow.style.transform = 'translateX(-6px)';
+                    setTimeout(() => formRow.style.transform = 'translateX(6px)', 80);
+                    setTimeout(() => formRow.style.transform = 'translateX(-4px)', 160);
+                    setTimeout(() => formRow.style.transform = 'translateX(4px)', 240);
+                    setTimeout(() => formRow.style.transform = '', 320);
+                } else {
+                    formRow.classList.remove('has-error');
+                    formRow.classList.add('has-success');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

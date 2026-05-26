@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kesalahan Internal Server - Error 500">
+    <title>Kesalahan Internal Server (500) - VibeTemplate</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-panel: #111827;
+            --bg-input: #0f172a;
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-main: #cbd5e1;
+            --text-muted: #64748b;
+            --text-heading: #f8fafc;
+            --accent: #1FABE1;
+            --accent-hover: #0E7DA7;
+            --accent-glow: rgba(31, 171, 225, 0.15);
+            --tertiary: #FFDB07;
+            --tertiary-glow: rgba(255, 219, 7, 0.2);
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.15);
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--danger-glow) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 219, 7, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .container:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(239, 68, 68, 0.05);
+        }
+
+        .content {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 0.4rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 12px var(--danger-glow);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, var(--danger) 0%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Actions Grid */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            gap: 0.5rem;
+            border: 1px solid transparent;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--danger);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #d32f2f;
+            box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.02);
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.06);
+            border-color: var(--border-hover);
+        }
+
+        .btn-spinner {
+            display: none;
+            width: 14px;
+            height: 14px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* SVG Server Animation */
+        .visual {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        /* Flashing Warning Keyframes */
+        @keyframes flash-red {
+            0%, 100% { fill: #ef4444; filter: drop-shadow(0 0 8px #ef4444); }
+            50% { fill: #374151; filter: none; }
+        }
+
+        @keyframes flash-green {
+            0%, 100% { fill: #10b981; }
+            50% { fill: #374151; }
+        }
+
+        @keyframes glitch-spark {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            20% { opacity: 1; transform: scaleY(1.3); }
+            40% { opacity: 0.2; transform: scaleY(0.8); }
+            80% { opacity: 1; transform: scaleY(1.1); }
+        }
+
+        /* SVG Classes */
+        .anim-warn-light {
+            animation: flash-red 1s infinite;
+        }
+        .anim-green-light {
+            animation: flash-green 1.5s infinite alternate;
+        }
+        .anim-spark {
+            animation: glitch-spark 2s infinite ease-in-out;
+            transform-origin: center bottom;
+        }
+
+        /* Responsive Layouts (Tablet & Mobile) */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .badge {
+                align-self: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .visual {
+                order: -1;
+                width: 100%;
+            }
+            .svg-container {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="container">
+        
+        <!-- LEFT SIDE: 500 CONTENT -->
+        <div class="content">
+            <div class="badge">
+                <i data-lucide="skull" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                <span>Kesalahan 500</span>
+            </div>
+            
+            <h1 class="title">Kerusakan <span>Sistem Internal</span></h1>
+            <p class="description">Maaf, server kami mengalami gangguan memori internal atau kelebihan beban pemrosesan secara tak terduga sewaktu melayani permintaan Anda. Pengembang kami telah diberitahu untuk memperbaikinya.</p>
+            
+            <!-- Actions -->
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-reload">
+                    <span class="btn-spinner" id="spinner"></span>
+                    <span id="btn-text">Muat Ulang Halaman</span>
+                </button>
+                <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: PREMIUM FLASHING SERVER RACK SVG -->
+        <div class="visual">
+            <div class="svg-container">
+                <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base background Shield -->
+                    <circle cx="200" cy="200" r="180" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+                    
+                    <!-- Server Rack Frame -->
+                    <rect x="110" y="80" width="180" height="240" fill="#1e293b" rx="8" stroke="#334155" stroke-width="3"/>
+                    
+                    <!-- Server 1 (Top) -->
+                    <rect x="122" y="95" width="156" height="48" fill="#0f172a" rx="4" stroke="#1e293b" stroke-width="2"/>
+                    <line x1="135" y1="119" x2="215" y2="119" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="240" cy="119" r="4" fill="#10b981" class="anim-green-light"/>
+                    <circle cx="254" cy="119" r="4" fill="#ef4444" class="anim-warn-light"/>
+
+                    <!-- Server 2 (Middle - Glitching/Sparks) -->
+                    <rect x="122" y="155" width="156" height="48" fill="#0f172a" rx="4" stroke="#ef4444" stroke-width="2" style="box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);"/>
+                    <!-- Server 2 Spills/Warning Spark -->
+                    <path d="M135 174 L170 174" stroke="#ef4444" stroke-width="4" stroke-linecap="round" class="anim-spark"/>
+                    <path d="M195 179 L210 179" stroke="#FFDB07" stroke-width="4" stroke-linecap="round" class="anim-spark" style="animation-delay: 0.5s;"/>
+                    <circle cx="240" cy="179" r="4" fill="#ef4444" class="anim-warn-light"/>
+                    <circle cx="254" cy="179" r="4" fill="#ef4444" class="anim-warn-light" style="animation-delay: 0.2s;"/>
+
+                    <!-- Server 3 (Bottom) -->
+                    <rect x="122" y="215" width="156" height="48" fill="#0f172a" rx="4" stroke="#1e293b" stroke-width="2"/>
+                    <line x1="135" y1="239" x2="215" y2="239" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="240" cy="239" r="4" fill="#10b981" class="anim-green-light" style="animation-delay: 0.8s;"/>
+                    <circle cx="254" cy="239" r="4" fill="#374151" />
+
+                    <!-- Warning Symbol at very top of server -->
+                    <polygon points="200,45 220,78 180,78" fill="#FFDB07" stroke="#0f172a" stroke-width="2" class="anim-warn-light"/>
+                    <text x="200" y="74" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="22" fill="#0f172a">!</text>
+
+                    <!-- Sparks / Electricity lines coming out -->
+                    <g stroke="#FFDB07" stroke-width="2" stroke-linecap="round" class="anim-spark">
+                        <!-- Left Spark -->
+                        <path d="M90,160 L105,170 L115,165" />
+                        <!-- Right Spark -->
+                        <path d="M305,170 L290,180 L285,175" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Logic: Simulation Reload -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            const btnReload = document.getElementById('btn-reload');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btn-text');
+
+            btnReload.addEventListener('click', () => {
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Memuat Ulang...';
+                btnReload.disabled = true;
+
+                setTimeout(() => {
+                    // Refresh halaman secara aktual
+                    window.location.reload();
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

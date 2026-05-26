@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistem VibeTemplate Sedang Mengalami Perawatan - Maintenance">
+    <title>Perawatan Sistem - VibeTemplate</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-panel: #111827;
+            --bg-input: #0f172a;
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-main: #cbd5e1;
+            --text-muted: #64748b;
+            --text-heading: #f8fafc;
+            --accent: #1FABE1;
+            --accent-hover: #0E7DA7;
+            --accent-glow: rgba(31, 171, 225, 0.15);
+            --tertiary: #FFDB07;
+            --tertiary-glow: rgba(255, 219, 7, 0.2);
+            --success: #10b981;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 219, 7, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .container:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(31, 171, 225, 0.05);
+        }
+
+        .content {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 219, 7, 0.1);
+            border: 1px solid var(--tertiary);
+            color: var(--tertiary);
+            padding: 0.4rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 12px var(--tertiary-glow);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Maintenance Progress Area */
+        .status-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.25rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.825rem;
+            font-weight: 700;
+        }
+
+        .status-label {
+            color: var(--text-muted);
+        }
+
+        .status-percent {
+            color: var(--accent);
+        }
+
+        .progress-bar-bg {
+            height: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--tertiary) 100%);
+            width: 82%;
+            box-shadow: 0 0 8px var(--accent);
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .eta-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Actions Grid */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            gap: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 0 16px rgba(31, 171, 225, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.02);
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.06);
+            border-color: var(--border-hover);
+        }
+
+        .btn-spinner {
+            display: none;
+            width: 14px;
+            height: 14px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* SVG Gear Animation */
+        .visual {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        /* Gear Animations */
+        @keyframes rotate-clockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-counter-clockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        @keyframes pulse-signal {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+        }
+
+        /* SVG Classes */
+        .gear-big {
+            animation: rotate-clockwise 15s linear infinite;
+            transform-origin: 200px 170px; /* Pusat gerigi besar */
+        }
+
+        .gear-small-1 {
+            animation: rotate-counter-clockwise 10s linear infinite;
+            transform-origin: 280px 240px; /* Pusat gerigi kecil kanan */
+        }
+
+        .gear-small-2 {
+            animation: rotate-counter-clockwise 12s linear infinite;
+            transform-origin: 110px 220px; /* Pusat gerigi kecil kiri */
+        }
+
+        .maintenance-glow {
+            animation: pulse-signal 3s ease-in-out infinite;
+            transform-origin: 200px 200px;
+        }
+
+        /* Responsive Layouts (Tablet & Mobile) */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .badge {
+                align-self: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .visual {
+                order: -1;
+                width: 100%;
+            }
+            .svg-container {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="container">
+        
+        <!-- LEFT SIDE: MAINTENANCE INFO -->
+        <div class="content">
+            <div class="badge">
+                <i data-lucide="wrench" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                <span>Pemeliharaan Rutin</span>
+            </div>
+            
+            <h1 class="title">Sistem Sedang <span>Ditingkatkan</span></h1>
+            <p class="description">Kami sedang melakukan perawatan server berkala dan penyempurnaan fitur keamanan internal untuk menjamin kelancaran sistem. Tenang, proses ini tidak akan memakan waktu lama.</p>
+            
+            <!-- Progress Status Box -->
+            <div class="status-box">
+                <div class="status-header">
+                    <span class="status-label" id="status-title-text">Penyelarasan Server Database</span>
+                    <span class="status-percent" id="status-percent-text">82%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="status-progress-fill"></div>
+                </div>
+                <div class="eta-text">
+                    <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--tertiary);"></i>
+                    <span id="eta-label-text">Estimasi Selesai: 25 Menit Lagi</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons with simulated checker -->
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btn-check-status">
+                    <span class="btn-spinner" id="spinner"></span>
+                    <span id="btn-text">Cek Status Terbaru</span>
+                </button>
+                <a href="dashboard.html" class="btn btn-secondary">Hubungi Admin</a>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: PREMIUM MECHANICAL GEARS ANIMATION -->
+        <div class="visual">
+            <div class="svg-container">
+                <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Circular Base Shield with Radial pulse -->
+                    <circle cx="200" cy="200" r="180" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+                    <circle cx="200" cy="200" r="160" fill="url(#panel-glow-grad)" class="maintenance-glow"/>
+
+                    <!-- Big Central Gear (Golden Bronze Theme) -->
+                    <g class="gear-big">
+                        <circle cx="200" cy="170" r="65" fill="url(#gear-bronze-grad)" stroke="#22c55e" stroke-width="0" />
+                        <!-- Gear teeths (Rotated bars) -->
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)"/>
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)" transform="rotate(30 200 170)"/>
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)" transform="rotate(60 200 170)"/>
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)" transform="rotate(90 200 170)"/>
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)" transform="rotate(120 200 170)"/>
+                        <path d="M190 95 h20 v150 h-20 z" fill="url(#gear-bronze-grad)" transform="rotate(150 200 170)"/>
+                        
+                        <!-- Inner details of Big Gear -->
+                        <circle cx="200" cy="170" r="45" fill="#0f172a" stroke="#FFDB07" stroke-width="3"/>
+                        <circle cx="200" cy="170" r="15" fill="url(#gear-bronze-grad)"/>
+                        <!-- Center Core hole -->
+                        <circle cx="200" cy="170" r="6" fill="#0f172a"/>
+                    </g>
+
+                    <!-- Small Gear 1: Right-bottom (Teal Theme) -->
+                    <g class="gear-small-1">
+                        <circle cx="280" cy="240" r="35" fill="url(#gear-teal-grad)" />
+                        <!-- Teeths -->
+                        <rect x="272" y="195" width="16" height="90" fill="url(#gear-teal-grad)" rx="2"/>
+                        <rect x="272" y="195" width="16" height="90" fill="url(#gear-teal-grad)" rx="2" transform="rotate(45 280 240)"/>
+                        <rect x="272" y="195" width="16" height="90" fill="url(#gear-teal-grad)" rx="2" transform="rotate(90 280 240)"/>
+                        <rect x="272" y="195" width="16" height="90" fill="url(#gear-teal-grad)" rx="2" transform="rotate(135 280 240)"/>
+                        <!-- Inner cutout -->
+                        <circle cx="280" cy="240" r="22" fill="#0f172a" stroke="#1FABE1" stroke-width="2"/>
+                        <circle cx="280" cy="240" r="8" fill="url(#gear-teal-grad)"/>
+                    </g>
+
+                    <!-- Small Gear 2: Left-bottom (Slate/Yellow Highlight) -->
+                    <g class="gear-small-2">
+                        <circle cx="110" cy="220" r="35" fill="url(#gear-yellow-grad)" />
+                        <!-- Teeths -->
+                        <rect x="102" y="175" width="16" height="90" fill="url(#gear-yellow-grad)" rx="2"/>
+                        <rect x="102" y="175" width="16" height="90" fill="url(#gear-yellow-grad)" rx="2" transform="rotate(45 110 220)"/>
+                        <rect x="102" y="175" width="16" height="90" fill="url(#gear-yellow-grad)" rx="2" transform="rotate(90 110 220)"/>
+                        <rect x="102" y="175" width="16" height="90" fill="url(#gear-yellow-grad)" rx="2" transform="rotate(135 110 220)"/>
+                        <!-- Inner cutout -->
+                        <circle cx="110" cy="220" r="22" fill="#0f172a" stroke="#FFDB07" stroke-width="2"/>
+                        <circle cx="110" cy="220" r="8" fill="url(#gear-yellow-grad)"/>
+                    </g>
+
+                    <!-- Screws/Dots -->
+                    <circle cx="200" cy="40" r="4" fill="#64748b"/>
+                    <circle cx="360" cy="200" r="4" fill="#64748b"/>
+                    <circle cx="200" cy="360" r="4" fill="#64748b"/>
+                    <circle cx="40" cy="200" r="4" fill="#64748b"/>
+
+                    <!-- DEFINITIONS / GRADIENTS -->
+                    <defs>
+                        <radialGradient id="panel-glow-grad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#FFDB07" stop-opacity="0.12"/>
+                            <stop offset="100%" stop-color="#FFDB07" stop-opacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="gear-bronze-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFDB07"/>
+                            <stop offset="50%" stop-color="#ffa500"/>
+                            <stop offset="100%" stop-color="#b25900"/>
+                        </linearGradient>
+                        <linearGradient id="gear-teal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1FABE1"/>
+                            <stop offset="100%" stop-color="#0E7DA7"/>
+                        </linearGradient>
+                        <linearGradient id="gear-yellow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFDB07"/>
+                            <stop offset="100%" stop-color="#64748b"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Logic: Status Checker Micro-interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            // Status simulations
+            const statusBox = {
+                titleText: document.getElementById('status-title-text'),
+                percentText: document.getElementById('status-percent-text'),
+                progressBar: document.getElementById('status-progress-fill'),
+                etaText: document.getElementById('eta-label-text')
+            };
+
+            const btnCheck = document.getElementById('btn-check-status');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btn-text');
+
+            let checkCount = 0;
+
+            btnCheck.addEventListener('click', () => {
+                // Pemicu Animasi Loading
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Menghubungkan...';
+                btnCheck.disabled = true;
+
+                setTimeout(() => {
+                    checkCount++;
+                    spinner.style.display = 'none';
+                    btnCheck.disabled = false;
+                    btnText.textContent = 'Cek Status Terbaru';
+
+                    // Update Status secara interaktif
+                    if (checkCount === 1) {
+                        statusBox.titleText.textContent = 'Migrasi Tabel Berhasil';
+                        statusBox.percentText.textContent = '94%';
+                        statusBox.progressBar.style.width = '94%';
+                        statusBox.etaText.textContent = 'Estimasi Selesai: 8 Menit Lagi';
+                    } else if (checkCount >= 2) {
+                        statusBox.titleText.textContent = 'Konfigurasi Sistem Akhir';
+                        statusBox.percentText.textContent = '99%';
+                        statusBox.progressBar.style.width = '99%';
+                        statusBox.etaText.innerHTML = `<span style="color:var(--success); font-weight:700;">Hampir selesai! Sedang memvalidasi cache.</span>`;
+                        btnText.textContent = 'Sistem Siap Segera';
+                        btnCheck.style.backgroundColor = 'var(--success)';
+                        btnCheck.style.borderColor = 'var(--success)';
+                    }
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
