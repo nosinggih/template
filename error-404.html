@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Halaman Tidak Ditemukan - Error 404">
+    <title>Halaman Tidak Ditemukan (404) - VibeTemplate</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-panel: #111827;
+            --bg-input: #0f172a;
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-main: #cbd5e1;
+            --text-muted: #64748b;
+            --text-heading: #f8fafc;
+            --accent: #1FABE1;
+            --accent-hover: #0E7DA7;
+            --accent-glow: rgba(31, 171, 225, 0.15);
+            --tertiary: #FFDB07;
+            --tertiary-glow: rgba(255, 219, 7, 0.2);
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 219, 7, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .container:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(31, 171, 225, 0.05);
+        }
+
+        .content {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 0.4rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Nav Actions */
+        .btn {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: #ffffff;
+            border: none;
+            outline: none;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 0 16px rgba(31, 171, 225, 0.4);
+        }
+
+        /* SVG Space Illustration */
+        .visual {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        /* Floating Astronaut Keyframe */
+        @keyframes float-astronaut {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(-3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes pulse-light {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .anim-astronaut {
+            animation: float-astronaut 6s ease-in-out infinite;
+            transform-origin: center center;
+        }
+
+        .anim-light {
+            animation: pulse-light 2.5s ease-in-out infinite alternate;
+        }
+
+        /* Responsive Layouts (Tablet & Mobile) */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .badge {
+                align-self: center;
+            }
+            .btn {
+                align-self: center;
+            }
+            .visual {
+                order: -1;
+                width: 100%;
+            }
+            .svg-container {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="container">
+        
+        <!-- LEFT SIDE: 404 CONTENT -->
+        <div class="content">
+            <div class="badge">
+                <i data-lucide="alert-triangle" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                <span>Kesalahan 404</span>
+            </div>
+            
+            <h1 class="title">Tersesat di <span>Ruang Hampa</span></h1>
+            <p class="description">Maaf, halaman yang Anda cari tidak dapat ditemukan atau telah dipindahkan ke koordinat galaksi lain. Mari kembali ke dashboard utama untuk memulihkan navigasi Anda.</p>
+            
+            <!-- Navigation back to Home -->
+            <a href="dashboard.html" class="btn">
+                <i data-lucide="arrow-left" style="width:16px; height:16px;"></i>
+                <span>Kembali ke Beranda</span>
+            </a>
+        </div>
+
+        <!-- RIGHT SIDE: PREMIUM FLOATING ASTRONAUT SVG -->
+        <div class="visual">
+            <div class="svg-container">
+                <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Space Background Grid -->
+                    <circle cx="200" cy="200" r="180" fill="#0c1020" stroke="#1e293b" stroke-width="2"/>
+                    
+                    <!-- Constellations / Stars -->
+                    <circle cx="90" cy="110" r="1" fill="#fff" opacity="0.4"/>
+                    <circle cx="280" cy="70" r="1.5" fill="#fff" opacity="0.6"/>
+                    <circle cx="310" cy="280" r="1" fill="#fff" opacity="0.5"/>
+                    <circle cx="120" cy="290" r="1.5" fill="#fff" opacity="0.4"/>
+
+                    <!-- Big 404 typography glowing behind -->
+                    <text x="50%" y="230" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="120" fill="url(#text-404-grad)" opacity="0.12" letter-spacing="-5">404</text>
+
+                    <!-- Astronaut Floating Group -->
+                    <g class="anim-astronaut">
+                        <!-- Tether Cord (Kabel Udara) -->
+                        <path d="M 80,300 Q 150,250 180,210 Q 195,190 202,175" stroke="#1FABE1" stroke-width="3" stroke-dasharray="6,4" fill="none" opacity="0.75" />
+
+                        <!-- Astronaut Body Elements -->
+                        <!-- Legs -->
+                        <rect x="180" y="210" width="18" height="30" fill="#cbd5e1" rx="9"/>
+                        <rect x="202" y="210" width="18" height="30" fill="#cbd5e1" rx="9"/>
+                        <!-- Shoes -->
+                        <rect x="176" y="235" width="22" height="12" fill="#0E7DA7" rx="5"/>
+                        <rect x="202" y="235" width="22" height="12" fill="#0E7DA7" rx="5"/>
+
+                        <!-- Arms -->
+                        <rect x="150" y="150" width="16" height="45" fill="#e2e8f0" rx="8" transform="rotate(35 150 150)"/>
+                        <rect x="234" y="150" width="16" height="45" fill="#cbd5e1" rx="8" transform="rotate(-35 234 150)"/>
+                        <!-- Gloves -->
+                        <circle cx="132" cy="188" r="8" fill="#0E7DA7"/>
+                        <circle cx="268" cy="188" r="8" fill="#0E7DA7"/>
+
+                        <!-- Torso/Spacesuit -->
+                        <rect x="170" y="140" width="60" height="75" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" rx="15"/>
+                        <!-- Control Box on chest -->
+                        <rect x="182" y="155" width="36" height="25" fill="#1e293b" rx="4"/>
+                        <circle cx="190" cy="167" r="3" fill="#ef4444" class="anim-light"/>
+                        <circle cx="200" cy="167" r="3" fill="#10b981"/>
+                        <rect x="208" y="164" width="6" height="5" fill="#1FABE1"/>
+
+                        <!-- Space Helmet -->
+                        <circle cx="200" cy="115" r="32" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+                        <!-- Visor Glass (Dark teal reflection glow) -->
+                        <path d="M 174,115 A 26,26 0 0 1 226,115 A 18,18 0 0 1 174,115 Z" fill="url(#visor-grad)" stroke="#1e293b" stroke-width="1" />
+                        <!-- Visor Reflection shine -->
+                        <path d="M 180,105 Q 200,95 212,102" stroke="#fff" stroke-width="2.5" fill="none" opacity="0.8" />
+                    </g>
+
+                    <!-- Moon Base / Planet at bottom -->
+                    <path d="M 50,380 A 160,50 0 0 0 350,380 Z" fill="url(#moon-grad)"/>
+                    <circle cx="150" cy="370" r="10" fill="#0c1020" opacity="0.6"/>
+                    <circle cx="260" cy="365" r="6" fill="#0c1020" opacity="0.6"/>
+
+                    <!-- DEFINITIONS / GRADIENTS -->
+                    <defs>
+                        <linearGradient id="text-404-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1FABE1"/>
+                            <stop offset="100%" stop-color="#FFDB07"/>
+                        </linearGradient>
+                        <linearGradient id="visor-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#111827"/>
+                            <stop offset="100%" stop-color="#0E7DA7"/>
+                        </linearGradient>
+                        <linearGradient id="moon-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#1e293b"/>
+                            <stop offset="100%" stop-color="#0f172a"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

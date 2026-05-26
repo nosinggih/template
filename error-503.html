@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Layanan Tidak Tersedia - Error 503">
+    <title>Layanan Tidak Tersedia (503) - VibeTemplate</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-panel: #111827;
+            --bg-input: #0f172a;
+            --border-color: #1e293b;
+            --border-hover: #334155;
+            --text-main: #cbd5e1;
+            --text-muted: #64748b;
+            --text-heading: #f8fafc;
+            --accent: #1FABE1;
+            --accent-hover: #0E7DA7;
+            --accent-glow: rgba(31, 171, 225, 0.15);
+            --tertiary: #FFDB07;
+            --tertiary-glow: rgba(255, 219, 7, 0.2);
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .ambient-glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 219, 7, 0.05) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Glassmorphic Container */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: rgba(17, 24, 39, 0.8);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .container:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(31, 171, 225, 0.05);
+        }
+
+        .content {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 219, 7, 0.1);
+            border: 1px solid var(--tertiary);
+            color: var(--tertiary);
+            padding: 0.4rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.775rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 12px var(--tertiary-glow);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-heading);
+            letter-spacing: -1px;
+        }
+
+        .title span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Countdown Box */
+        .countdown-retry {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 0.85rem;
+        }
+
+        .retry-num {
+            background: var(--accent);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Actions Grid */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            gap: 0.5rem;
+            border: 1px solid transparent;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 0 16px rgba(31, 171, 225, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.02);
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.06);
+            border-color: var(--border-hover);
+        }
+
+        /* SVG Cloud Animation */
+        .visual {
+            flex: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-container {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        /* Signal Wave Animation */
+        @keyframes wave-pulse {
+            0%, 100% { opacity: 0.15; transform: scale(0.9); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        @keyframes float-cloud {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* SVG Classes */
+        .anim-cloud {
+            animation: float-cloud 4s ease-in-out infinite alternate;
+        }
+        .anim-wave-1 {
+            animation: wave-pulse 2s infinite ease-in-out;
+            transform-origin: 200px 180px;
+        }
+        .anim-wave-2 {
+            animation: wave-pulse 2s infinite ease-in-out;
+            animation-delay: 0.6s;
+            transform-origin: 200px 180px;
+        }
+        .anim-wave-3 {
+            animation: wave-pulse 2s infinite ease-in-out;
+            animation-delay: 1.2s;
+            transform-origin: 200px 180px;
+        }
+
+        /* Responsive Layouts (Tablet & Mobile) */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .badge {
+                align-self: center;
+            }
+            .countdown-retry {
+                justify-content: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .visual {
+                order: -1;
+                width: 100%;
+            }
+            .svg-container {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- MAIN CARD CONTAINER -->
+    <div class="container">
+        
+        <!-- LEFT SIDE: 503 CONTENT -->
+        <div class="content">
+            <div class="badge">
+                <i data-lucide="cloud-off" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                <span>Kesalahan 503</span>
+            </div>
+            
+            <h1 class="title">Layanan <span>Kelebihan Beban</span></h1>
+            <p class="description">Maaf, layanan server saat ini tidak tersedia atau kelebihan kapasitas karena lonjakan trafik jaringan yang sangat padat. Koneksi Anda sedang dijadwalkan ulang.</p>
+            
+            <!-- Dynamic Countdown Retry Box -->
+            <div class="countdown-retry">
+                <div class="retry-num" id="retry-seconds">30</div>
+                <span>Mencoba menghubungkan ulang ke server secara otomatis...</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.location.reload();">
+                    <i data-lucide="refresh-cw" style="width:14px; height:14px;"></i>
+                    <span>Coba Sekarang</span>
+                </button>
+                <a href="dashboard.html" class="btn btn-secondary">Kembali</a>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: PREMIUM CLOUD DISCONNECTION SVG -->
+        <div class="visual">
+            <div class="svg-container">
+                <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base background Shield -->
+                    <circle cx="200" cy="200" r="180" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+
+                    <!-- Outer Waves (Signal pulses) -->
+                    <circle cx="200" cy="180" r="100" stroke="#1e293b" stroke-width="2" class="anim-wave-1" />
+                    <circle cx="200" cy="180" r="130" stroke="rgba(31, 171, 225, 0.15)" stroke-width="2" class="anim-wave-2" />
+                    <circle cx="200" cy="180" r="160" stroke="rgba(31, 171, 225, 0.05)" stroke-width="2" class="anim-wave-3" />
+
+                    <!-- Disconnected Cloud Group -->
+                    <g class="anim-cloud">
+                        <!-- Cloud main path -->
+                        <path d="M 140,220 A 35,35 0 0 1 170,160 A 45,45 0 0 1 245,150 A 40,40 0 0 1 280,200 A 35,35 0 0 1 260,240 L 140,240 A 25,25 0 0 1 140,220 Z" fill="url(#cloud-grad)" stroke="#1e293b" stroke-width="2"/>
+                        
+                        <!-- Inner Warning sign on Cloud -->
+                        <polygon points="200,165 212,192 188,192" fill="#FFDB07" stroke="#1e293b" stroke-width="1.5"/>
+                        <circle cx="200" cy="188" r="1.5" fill="#0f172a" />
+                        <line x1="200" y1="172" x2="200" y2="183" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+
+                        <!-- Break Cable / Electric plug falling down -->
+                        <!-- Socket Left -->
+                        <rect x="160" y="260" width="16" height="24" fill="#334155" rx="3"/>
+                        <line x1="168" y1="240" x2="168" y2="260" stroke="#64748b" stroke-width="2" />
+                        <line x1="164" y1="284" x2="164" y2="294" stroke="#ff4d4d" stroke-width="2"/>
+                        <line x1="172" y1="284" x2="172" y2="294" stroke="#ff4d4d" stroke-width="2"/>
+
+                        <!-- Plug Right (Disconnected) -->
+                        <rect x="220" y="280" width="16" height="24" fill="#334155" rx="3"/>
+                        <line x1="228" y1="240" x2="228" y2="280" stroke="#64748b" stroke-width="2" />
+                    </g>
+
+                    <!-- Screws/Dots -->
+                    <circle cx="200" cy="40" r="4" fill="#64748b"/>
+                    <circle cx="360" cy="200" r="4" fill="#64748b"/>
+                    <circle cx="200" cy="360" r="4" fill="#64748b"/>
+                    <circle cx="40" cy="200" r="4" fill="#64748b"/>
+
+                    <!-- DEFINITIONS / GRADIENTS -->
+                    <defs>
+                        <linearGradient id="cloud-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#334155"/>
+                            <stop offset="100%" stop-color="#1e293b"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Logic: Auto Retry Countdown -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            let retryTime = 30; // 30 detik countdown
+            const retryLabel = document.getElementById('retry-seconds');
+
+            const countdownInterval = setInterval(() => {
+                retryTime--;
+                retryLabel.textContent = retryTime;
+
+                if (retryTime <= 0) {
+                    clearInterval(countdownInterval);
+                    // Reload otomatis ketika countdown menyentuh angka 0
+                    window.location.reload();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
