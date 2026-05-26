@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datatable Pegawai - Vibe Dashboard Premium">
+    <title>Datatable Pegawai - Vibe Dashboard</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Script Tema Pencegah Kedipan -->
+    <script>
+        const theme = localStorage.getItem('vibe-theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ==========================================
+             1. SIDEBAR NAVIGASI UTAMA (SISI KIRI)
+             ========================================== -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-logo">V</div>
+                <div class="sidebar-title">VibeTemplate</div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-label">Menu Utama</li>
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard Overview</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Fitur Baru</li>
+                <li class="menu-item active">
+                    <a href="datatable.html" class="menu-link">
+                        <i data-lucide="table-properties"></i>
+                        <span>Datatable Pegawai</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="form.html" class="menu-link">
+                        <i data-lucide="check-square"></i>
+                        <span>Formulir Interaktif</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="table-preview.html" class="menu-link">
+                        <i data-lucide="grid"></i>
+                        <span>Variasi Tabel</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Pengelolaan</li>
+                <li class="menu-item">
+                    <a href="components-preview.html" class="menu-link">
+                        <i data-lucide="layers"></i>
+                        <span>Galeri Komponen</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="modal-preview.html" class="menu-link">
+                        <i data-lucide="picture-in-picture-2"></i>
+                        <span>Modal & Offcanvas</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <p>Vibe Engine v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             2. AREA KONTEN UTAMA (SISI KANAN)
+             ========================================== -->
+        <main class="main-content">
+            
+            <!-- HEADER ATAS -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" aria-label="Buka Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="search-bar" style="display: none;">
+                        <!-- Hidden here because datatable has its own search -->
+                    </div>
+                    <span style="font-weight: 700; color: var(--text-heading); font-size: 1.1rem; letter-spacing: -0.2px;">Manajemen Data Pegawai</span>
+                </div>
+                
+                <div class="header-right">
+                    <!-- Tombol Toggle Tema -->
+                    <button class="theme-toggle" aria-label="Ganti Tema">
+                        <i data-lucide="sun"></i>
+                    </button>
+
+                    <!-- Profil Pengguna -->
+                    <div class="dropdown-container">
+                        <div class="user-profile">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="user-avatar">
+                            <div class="user-info">
+                                <span class="user-name">Nosinggih</span>
+                                <span class="user-role">Lead Vibe Coder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ======================================================================
+                 ZONA EKSEKUSI AI - DATATABLE WORKSPACE
+                 ====================================================================== -->
+            <section class="content-body">
+                
+                <!-- Section Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h1 style="color: var(--text-heading); font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px;">Datatable Pegawai</h1>
+                        <p style="color: var(--text-muted); font-size: 0.875rem;">Pengelolaan data pegawai berkecepatan tinggi dengan 500 baris dummy data.</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-sm" id="btn-demo-loading">
+                            <i data-lucide="refresh-cw"></i> Simulasikan Load Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Datatable Container Card -->
+                <div class="card" style="margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+                        <!-- Entries Size -->
+                        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                            <span>Tampilkan</span>
+                            <select id="dt-pageSize" class="form-control" style="width: 75px; padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-input);">
+                                <option value="10">10</option>
+                                <option value="25" selected>25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span>entri</span>
+                        </div>
+                        <!-- Search Box -->
+                        <div class="search-bar" style="width: 280px; margin-left: auto;">
+                            <i data-lucide="search"></i>
+                            <input type="text" id="dt-search" placeholder="Cari pegawai...">
+                        </div>
+                    </div>
+
+                    <!-- Table element -->
+                    <div class="table-responsive">
+                        <table class="table-custom" id="employee-table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name" style="cursor: pointer; user-select: none;">
+                                        Nama <i data-lucide="chevrons-up-down" class="sort-icon" style="width:14px; height:14px; vertical-align:middle; margin-left: 4px; color:var(--text-muted);"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="email" style="cursor: pointer; user-select: none;">
+                                        Email <i data-lucide="chevrons-up-down" class="sort-icon" style="width:14px; height:14px; vertical-align:middle; margin-left: 4px; color:var(--text-muted);"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="phone" style="cursor: pointer; user-select: none;">
+                                        Nomor Telepon <i data-lucide="chevrons-up-down" class="sort-icon" style="width:14px; height:14px; vertical-align:middle; margin-left: 4px; color:var(--text-muted);"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="address" style="cursor: pointer; user-select: none;">
+                                        Alamat <i data-lucide="chevrons-up-down" class="sort-icon" style="width:14px; height:14px; vertical-align:middle; margin-left: 4px; color:var(--text-muted);"></i>
+                                    </th>
+                                    <th style="width: 140px; text-align: center;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee-tbody">
+                                <!-- Dynamically loaded rows via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination and Info Footer -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; font-size: 0.875rem;">
+                        <div style="color: var(--text-muted);" id="dt-info">
+                            Menampilkan 0 sampai 0 dari 0 entri
+                        </div>
+                        <div class="pagination-container" id="dt-pagination" style="display: flex; gap: 0.25rem;">
+                            <!-- Dynamically loaded buttons via JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- ======================================================================
+                 AKHIR ZONA EKSEKUSI AI
+                 ====================================================================== -->
+
+        </main>
+    </div>
+
+    <!-- ==========================================
+         MODALS (VIEW, EDIT, DELETE)
+         ========================================== -->
+
+    <!-- View Modal -->
+    <div class="modal-overlay" id="modal-view">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detail Pegawai</h3>
+                <button class="modal-close" onclick="closeModal('modal-view')">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-view-body">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-view')">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="modal-edit">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Data Pegawai</h3>
+                <button class="modal-close" onclick="closeModal('modal-edit')">&times;</button>
+            </div>
+            <form id="form-edit-employee">
+                <input type="hidden" id="edit-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Nama Lengkap <span style="color: var(--danger);">*</span></label>
+                        <input type="text" id="edit-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alamat Email <span style="color: var(--danger);">*</span></label>
+                        <input type="email" id="edit-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nomor Telepon <span style="color: var(--danger);">*</span></label>
+                        <input type="text" id="edit-phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Alamat Tinggal <span style="color: var(--danger);">*</span></label>
+                        <textarea id="edit-address" class="form-control" rows="3" required style="resize: vertical;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('modal-edit')">Batal</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal-overlay" id="modal-delete">
+        <div class="modal-content" style="max-width: 420px;">
+            <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
+                <h3 class="modal-title" style="color: var(--danger);">Konfirmasi Hapus</h3>
+                <button class="modal-close" onclick="closeModal('modal-delete')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding-top: 0.5rem; padding-bottom: 1.5rem;">
+                <p>Apakah Anda yakin ingin menghapus data pegawai <strong id="delete-name-label" style="color: var(--text-heading);"></strong>? Data akan terhapus secara permanen dari sistem.</p>
+            </div>
+            <div class="modal-footer" style="border-top: none; padding-top: 0;">
+                <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-delete')">Batal</button>
+                <button class="btn btn-danger btn-sm" id="btn-confirm-delete">Hapus Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Script -->
+    <script src="assets/js/app.min.js"></script>
+</body>
+</html>
