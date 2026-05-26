@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulir Interaktif - Vibe Dashboard Premium">
+    <title>Formulir Interaktif - Vibe Dashboard</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Script Tema Pencegah Kedipan -->
+    <script>
+        const theme = localStorage.getItem('vibe-theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ==========================================
+             1. SIDEBAR NAVIGASI UTAMA (SISI KIRI)
+             ========================================== -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-logo">V</div>
+                <div class="sidebar-title">VibeTemplate</div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-label">Menu Utama</li>
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard Overview</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Fitur Baru</li>
+                <li class="menu-item">
+                    <a href="datatable.html" class="menu-link">
+                        <i data-lucide="table-properties"></i>
+                        <span>Datatable Pegawai</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="form.html" class="menu-link">
+                        <i data-lucide="check-square"></i>
+                        <span>Formulir Interaktif</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="table-preview.html" class="menu-link">
+                        <i data-lucide="grid"></i>
+                        <span>Variasi Tabel</span>
+                    </a>
+                </li>
+                
+                <li class="menu-label">Pengelolaan</li>
+                <li class="menu-item">
+                    <a href="components-preview.html" class="menu-link">
+                        <i data-lucide="layers"></i>
+                        <span>Galeri Komponen</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="modal-preview.html" class="menu-link">
+                        <i data-lucide="picture-in-picture-2"></i>
+                        <span>Modal & Offcanvas</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <p>Vibe Engine v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             2. AREA KONTEN UTAMA (SISI KANAN)
+             ========================================== -->
+        <main class="main-content">
+            
+            <!-- HEADER ATAS -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" aria-label="Buka Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <span style="font-weight: 700; color: var(--text-heading); font-size: 1.1rem; letter-spacing: -0.2px;">Formulir Interaktif</span>
+                </div>
+                
+                <div class="header-right">
+                    <!-- Tombol Toggle Tema -->
+                    <button class="theme-toggle" aria-label="Ganti Tema">
+                        <i data-lucide="sun"></i>
+                    </button>
+
+                    <!-- Profil Pengguna -->
+                    <div class="dropdown-container">
+                        <div class="user-profile">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="user-avatar">
+                            <div class="user-info">
+                                <span class="user-name">Nosinggih</span>
+                                <span class="user-role">Lead Vibe Coder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ======================================================================
+                 ZONA EKSEKUSI AI - FORM WORKSPACE
+                 ====================================================================== -->
+            <section class="content-body">
+                
+                <!-- Section Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h1 style="color: var(--text-heading); font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px;">Formulir Interaktif</h1>
+                        <p style="color: var(--text-muted); font-size: 0.875rem;">Input data dengan komponen Select2 kustom berbasis Vanilla JS.</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm" id="btn-form-loading">
+                            <i data-lucide="refresh-cw"></i> Simulasikan Pemuatan Form
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 1.5rem;">
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>Pendaftaran Anggota Pegawai Baru</span>
+                                <div class="card-title-icon"><i data-lucide="user-plus"></i></div>
+                            </div>
+                            
+                            <form id="interactive-pendaftaran-form" class="demo-validate-form">
+                                <!-- Alert Sukses -->
+                                <div class="alert alert-success alert-success-demo" style="display: none; margin-bottom: 1.25rem;">
+                                    <div class="alert-icon"><i data-lucide="check-circle-2"></i></div>
+                                    <div class="alert-content">
+                                        <div class="alert-title">Pendaftaran Berhasil!</div>
+                                        Pegawai baru telah sukses disimpan ke sistem database.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Nama Lengkap <span style="color: var(--danger);">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                                    <span class="error-message">Nama lengkap tidak boleh kosong</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Alamat Email <span style="color: var(--danger);">*</span></label>
+                                    <input type="email" class="form-control" placeholder="budi.santoso@email.com" required>
+                                    <span class="error-message">Alamat email wajib diisi dengan benar</span>
+                                </div>
+
+                                <!-- Custom Select2 Dropdown -->
+                                <div class="form-group" style="position: relative;">
+                                    <label class="form-label">Negara Asal (Select2 Kustom) <span style="color: var(--danger);">*</span></label>
+                                    <div class="vibe-select-container" id="select-country-container">
+                                        <!-- Trigger -->
+                                        <div class="vibe-select-trigger" id="select-country-trigger">
+                                            <span class="vibe-select-value-text" style="color: var(--text-muted);">Cari & pilih negara...</span>
+                                            <i data-lucide="chevron-down" class="vibe-select-arrow" style="width: 16px; height: 16px;"></i>
+                                        </div>
+                                        <!-- Dropdown Menu -->
+                                        <div class="vibe-select-dropdown" id="select-country-dropdown">
+                                            <div class="vibe-select-search-box" style="position: relative; padding: 0.5rem; border-bottom: 1px solid var(--border-color);">
+                                                <i data-lucide="search" style="width:14px; height:14px; position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
+                                                <input type="text" class="vibe-select-search" placeholder="Ketik nama negara..." autocomplete="off" style="width:100%; font-size:0.85rem; padding: 0.4rem 0.5rem 0.4rem 1.8rem; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 6px;">
+                                            </div>
+                                            <ul class="vibe-select-options" id="select-country-options" style="list-style:none; max-height:220px; overflow-y:auto; padding: 0.25rem 0;">
+                                                <!-- Dynamic list loaded by JS -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Hidden Input for Native Form Submission -->
+                                    <input type="hidden" name="country" id="country-hidden-input" required>
+                                    <span class="error-message" id="country-error">Wajib memilih negara asal pegawai</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Deskripsi Profil / Riwayat Singkat</label>
+                                    <textarea class="form-control" placeholder="Tulis riwayat singkat di sini..." rows="4" style="resize: vertical;"></textarea>
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem; gap: 0.75rem;">
+                                    <button type="reset" class="btn btn-secondary" id="btn-reset-form">Reset Form</button>
+                                    <button type="submit" class="btn btn-primary" style="box-shadow: var(--shadow-glow);">Simpan Pegawai</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card card-accent" style="height: 100%;">
+                            <div class="card-title">
+                                <span>Panduan Select2</span>
+                                <div class="card-title-icon" style="background-color: var(--success-glow); color: var(--success);"><i data-lucide="info"></i></div>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                                Komponen dropdown Select2 di samping dibangun murni menggunakan **Vanilla JS & CSS** tanpa jQuery.
+                            </p>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.825rem; color: var(--text-main);">
+                                <li style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                                    <i data-lucide="check" style="width:16px; height:16px; color: var(--success); flex-shrink: 0; margin-top: 0.1rem;"></i>
+                                    <span>Pencarian Cepat secara langsung sewaktu mengetik nama negara.</span>
+                                </li>
+                                <li style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                                    <i data-lucide="check" style="width:16px; height:16px; color: var(--success); flex-shrink: 0; margin-top: 0.1rem;"></i>
+                                    <span>Navigasi keyboard penuh menggunakan `Panah Bawah` & `Panah Atas` untuk berpindah, serta tombol `Enter` untuk memilih opsi.</span>
+                                </li>
+                                <li style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                                    <i data-lucide="check" style="width:16px; height:16px; color: var(--success); flex-shrink: 0; margin-top: 0.1rem;"></i>
+                                    <span>Otomatis menutup jika menekan tombol `Escape` atau mengklik area lain di luar dropdown.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- ======================================================================
+                 AKHIR ZONA EKSEKUSI AI
+                 ====================================================================== -->
+
+        </main>
+    </div>
+
+    <!-- Core Script -->
+    <script src="assets/js/app.min.js"></script>
+</body>
+</html>

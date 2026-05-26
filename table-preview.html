@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Table Variations - Vibe Dashboard">
+    <title>Variasi Tabel - Vibe Dashboard</title>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="assets/css/style.min.css">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Script Tema Pencegah Kedipan -->
+    <script>
+        const theme = localStorage.getItem('vibe-theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- ==========================================
+             1. SIDEBAR NAVIGASI UTAMA (SISI KIRI)
+             ========================================== -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-logo">V</div>
+                <div class="sidebar-title">VibeTemplate</div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-label">Menu Utama</li>
+                <li class="menu-item">
+                    <a href="dashboard.html" class="menu-link">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Dashboard Overview</span>
+                    </a>
+                </li>
+
+                <li class="menu-label">Fitur Baru</li>
+                <li class="menu-item">
+                    <a href="datatable.html" class="menu-link">
+                        <i data-lucide="table-properties"></i>
+                        <span>Datatable Pegawai</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="form.html" class="menu-link">
+                        <i data-lucide="check-square"></i>
+                        <span>Formulir Interaktif</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="table-preview.html" class="menu-link">
+                        <i data-lucide="grid"></i>
+                        <span>Variasi Tabel</span>
+                    </a>
+                </li>
+
+                <li class="menu-label">Pengelolaan</li>
+                <li class="menu-item">
+                    <a href="components-preview.html" class="menu-link">
+                        <i data-lucide="layers"></i>
+                        <span>Galeri Komponen</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="modal-preview.html" class="menu-link">
+                        <i data-lucide="picture-in-picture-2"></i>
+                        <span>Modal & Offcanvas</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="folder-git2"></i>
+                        <span>Proyek AI</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="file-text"></i>
+                        <span>Dokumentasi</span>
+                    </a>
+                </li>
+
+                <li class="menu-label">Konfigurasi</li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i data-lucide="settings"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p>Vibe Engine v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             2. AREA KONTEN UTAMA (SISI KANAN)
+             ========================================== -->
+        <main class="main-content">
+
+            <!-- HEADER ATAS (STICKY TOP) -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" aria-label="Buka Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="search-bar">
+                        <i data-lucide="search"></i>
+                        <input type="text" placeholder="Cari sesuatu...">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <!-- Tombol Toggle Tema -->
+                    <button class="theme-toggle" aria-label="Ganti Tema">
+                        <i data-lucide="sun"></i>
+                    </button>
+
+                    <!-- Tombol Notifikasi -->
+                    <div class="dropdown-container">
+                        <div class="notification-bell" aria-label="Notifikasi">
+                            <i data-lucide="bell"></i>
+                            <span class="notification-badge"></span>
+                        </div>
+                    </div>
+
+                    <!-- Profil Pengguna -->
+                    <div class="dropdown-container">
+                        <div class="user-profile">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100"
+                                 alt="Avatar" class="user-avatar">
+                            <div class="user-info">
+                                <span class="user-name">Nosinggih</span>
+                                <span class="user-role">Lead Vibe Coder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ======================================================================
+                 ZONA EKSEKUSI AI - GALERI VARIASI TABEL
+                 ====================================================================== -->
+            <section class="content-body">
+
+                <!-- Section Header -->
+                <div>
+                    <h1 style="color: var(--text-heading); font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px;">Galeri Variasi Tabel</h1>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Koleksi model layout tabel data dengan kelas utilitas premium yang siap diimplementasikan langsung ke sistem Datatable.</p>
+                </div>
+
+                <!-- Card 1: Tabel Striped & Hoverable (Standard & Accent color headers) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>1. Striped & Hoverable Table (Header Accent Primary)</span>
+                                <div class="card-title-icon"><i data-lucide="sliders"></i></div>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+                                Menggunakan kombinasi kelas <code>.table-custom</code>, <code>.table-striped</code> (selang-seling pastel lembut), <code>.table-hover</code>, serta header <code>.thead-primary</code> untuk memandu fokus mata membaca baris data dengan nyaman.
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table-custom table-striped table-hover">
+                                    <thead class="thead-primary">
+                                        <tr>
+                                            <th>ID Pegawai</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Posisi Kerja</th>
+                                            <th>Status</th>
+                                            <th>Gaji Pokok</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight:700; font-family:monospace;">#EMP-0041</td>
+                                            <td style="font-weight:600; color:var(--text-heading);">Budi Santoso</td>
+                                            <td>Senior Cloud Architecture</td>
+                                            <td><span class="badge badge-success">Aktif</span></td>
+                                            <td style="font-weight:600;">Rp 18.500.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:700; font-family:monospace;">#EMP-0102</td>
+                                            <td style="font-weight:600; color:var(--text-heading);">Lestari Ayu Putri</td>
+                                            <td>UI/UX Specialist</td>
+                                            <td><span class="badge badge-success">Aktif</span></td>
+                                            <td style="font-weight:600;">Rp 14.200.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:700; font-family:monospace;">#EMP-0149</td>
+                                            <td style="font-weight:600; color:var(--text-heading);">Indra Wijaya</td>
+                                            <td>Lead AI Engineer</td>
+                                            <td><span class="badge badge-warning">On Bench</span></td>
+                                            <td style="font-weight:600;">Rp 22.000.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:700; font-family:monospace;">#EMP-0210</td>
+                                            <td style="font-weight:600; color:var(--text-heading);">Gunawan Prasetyo</td>
+                                            <td>DevOps Specialist</td>
+                                            <td><span class="badge badge-danger">Cuti</span></td>
+                                            <td style="font-weight:600;">Rp 15.800.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Bordered Table (Distinct structure & Dark headers) -->
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card" style="height: 100%;">
+                            <div class="card-title">
+                                <span>2. Bordered Table (Grid Style)</span>
+                                <div class="card-title-icon"><i data-lucide="grid-3x3"></i></div>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+                                Menampilkan tabel bergaris pembatas lengkap <code>.table-bordered</code> untuk data terstruktur bernilai pasti (seperti audit, akuntansi, atau log performa).
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table-custom table-bordered table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Server</th>
+                                            <th>Uptime</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight:600;">AP-Sg-01</td>
+                                            <td>99.98%</td>
+                                            <td><span class="badge badge-success" style="padding:0.15rem 0.45rem; font-size:0.65rem;">Healthy</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:600;">US-East-02</td>
+                                            <td>99.92%</td>
+                                            <td><span class="badge badge-success" style="padding:0.15rem 0.45rem; font-size:0.65rem;">Healthy</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:600;">EU-West-01</td>
+                                            <td>94.15%</td>
+                                            <td><span class="badge badge-danger" style="padding:0.15rem 0.45rem; font-size:0.65rem;">Critical</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Compact Table (Condensed size for heavy data) -->
+                    <div class="col-6">
+                        <div class="card" style="height: 100%;">
+                            <div class="card-title">
+                                <span>3. Condensed Compact Table (sm)</span>
+                                <div class="card-title-icon"><i data-lucide="minimize-2"></i></div>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+                                Menggunakan kelas <code>.table-sm</code> untuk mengurangi padding vertikal dan ukuran teks, sangat optimal bila Anda memiliki data padat dengan ratusan baris.
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table-custom table-striped table-sm table-hover">
+                                    <thead class="thead-secondary">
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Value</th>
+                                            <th>Level</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Core Memory Utilization</td>
+                                            <td>72.5 GB / 128 GB</td>
+                                            <td><span style="color:var(--success); font-weight:700;">OK</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Database Response Rate</td>
+                                            <td>14ms avg</td>
+                                            <td><span style="color:var(--success); font-weight:700;">OK</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Network IOPS Overhead</td>
+                                            <td>9,450 / sec</td>
+                                            <td><span style="color:var(--warning); font-weight:700;">WARN</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pending AI Executions</td>
+                                            <td>0 tasks</td>
+                                            <td><span style="color:var(--success); font-weight:700;">OK</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Glassmorphic Premium Table (Wow Factor Art) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="background: linear-gradient(135deg, rgba(31,171,225,0.05) 0%, rgba(255,219,7,0.03) 100%);">
+                            <div class="card-title">
+                                <span>4. Glassmorphism Cyberpunk Style Table (Wow Effect)</span>
+                                <div class="card-title-icon" style="background:var(--tertiary-glow); color:var(--tertiary);"><i data-lucide="sparkles"></i></div>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+                                Menggunakan kelas premium <code>.table-glass</code> dikombinasikan dengan <code>backdrop-filter</code> melahirkan efek frosted-glass transparan yang mewah di atas latar belakang gradasi halus.
+                            </p>
+                            
+                            <table class="table-custom table-glass">
+                                <thead>
+                                    <tr>
+                                        <th>Model AI</th>
+                                        <th>Kecepatan Token</th>
+                                        <th>Akurasi Global</th>
+                                        <th>Efisiensi Daya</th>
+                                        <th>Penilaian Visual</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight:700; color:var(--text-heading);"><i data-lucide="cpu" style="width:14px; height:14px; margin-right:4px; vertical-align:middle; color:var(--accent);"></i> Vibe-LLaMA 3.5</td>
+                                        <td>184 t/s</td>
+                                        <td>94.8%</td>
+                                        <td>8.4W</td>
+                                        <td>
+                                            <div style="display:flex; gap:2px; color:var(--tertiary);">
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:700; color:var(--text-heading);"><i data-lucide="cpu" style="width:14px; height:14px; margin-right:4px; vertical-align:middle; color:var(--accent);"></i> Gemini-Vibe Agent</td>
+                                        <td>240 t/s</td>
+                                        <td>96.2%</td>
+                                        <td>9.1W</td>
+                                        <td>
+                                            <div style="display:flex; gap:2px; color:var(--tertiary);">
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:700; color:var(--text-heading);"><i data-lucide="cpu" style="width:14px; height:14px; margin-right:4px; vertical-align:middle; color:var(--accent);"></i> DeepSeek-V4-Lite</td>
+                                        <td>110 t/s</td>
+                                        <td>89.4%</td>
+                                        <td>4.2W</td>
+                                        <td>
+                                            <div style="display:flex; gap:2px; color:var(--tertiary);">
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px; fill:var(--tertiary);"></i>
+                                                <i data-lucide="star" style="width:12px; height:12px;"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Warna Header thead Kustom (Dapat diimplementasikan ke Datatable) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <span>5. Galeri Warna Header (thead) Kustom</span>
+                                <div class="card-title-icon"><i data-lucide="palette"></i></div>
+                            </div>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-bottom:1.5rem;">
+                                Kami menyediakan 4 macam tema thead warna yang cocok digunakan pada <code>.table-custom</code>. Semua varian warna header ini mendukung kontras teks yang ramah aksesibilitas.
+                            </p>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--text-heading);">Varian .thead-secondary (Teal)</h5>
+                                    <div class="table-responsive" style="margin-bottom: 1.5rem;">
+                                        <table class="table-custom">
+                                            <thead class="thead-secondary">
+                                                <tr>
+                                                    <th>Negara</th>
+                                                    <th>Kode Pos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Indonesia</td><td>+62</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--text-heading);">Varian .thead-yellow (Tersier Kuning)</h5>
+                                    <div class="table-responsive" style="margin-bottom: 1.5rem;">
+                                        <table class="table-custom">
+                                            <thead class="thead-yellow">
+                                                <tr>
+                                                    <th>Negara</th>
+                                                    <th>Kode Pos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Malaysia</td><td>+60</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--text-heading);">Varian .thead-dark (Gelap Solid)</h5>
+                                    <div class="table-responsive">
+                                        <table class="table-custom">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Negara</th>
+                                                    <th>Kode Pos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Singapore</td><td>+65</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem; color:var(--text-heading);">Varian .thead-primary (Sky Blue)</h5>
+                                    <div class="table-responsive">
+                                        <table class="table-custom">
+                                            <thead class="thead-primary">
+                                                <tr>
+                                                    <th>Negara</th>
+                                                    <th>Kode Pos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Japan</td><td>+81</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- AKHIR ZONA EKSEKUSI AI -->
+
+        </main>
+    </div>
+
+    <!-- Core Script -->
+    <script src="assets/js/app.min.js"></script>
+</body>
+
+</html>

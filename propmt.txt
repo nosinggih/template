@@ -1,0 +1,12 @@
+buatkan perencanaan untuk:
+
+1. membuat untuk template style ini bisa diimplementasikan di project lain.
+2. buat sebagai template dengan folder project yang terstruktur. 
+3. agar mudah di implementasikan, buat juga petunjuk penggunaannya.
+4. rapikan penamaan file ataupun componen-componennya.
+5. dalam waktu dekat template ini akan diimplementasikan pada projek laravel
+6. jika diperlukan compressi maka lakukan compressi pada file javascript dan css. tapi jangan hilangkan file asli.
+
+hasilkan terbaik 
+
+buat dalam bentuk file report dengan nama "perencanaan.md"
